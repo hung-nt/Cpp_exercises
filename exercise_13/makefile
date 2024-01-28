@@ -1,16 +1,26 @@
-CC = g++
-CFLAGS = -std=c++11
+CXX = g++
+CXXFLAGS = -std=c++11
+SRC_DIR = src
+OBJ_DIR = obj
 
-all: main
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
-main: main.o
-	$(CC) $(CFLAGS) -o main main.o
+TARGET = main
 
-main.o: main.cpp
-	$(CC) $(CFLAGS) -c main.cpp
+all: $(TARGET)
 
-run: main
-	./main
+$(TARGET): $(OBJ_FILES)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+run: $(TARGET)
+	./$(TARGET)
 
 clean:
-	rm -f main *.o *.exe
+	rm -rf $(OBJ_DIR) $(TARGET)
+
+.PHONY: all run clean
