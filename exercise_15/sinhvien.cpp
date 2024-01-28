@@ -15,7 +15,7 @@ void KetQuaHocTap::input() {
     getline(cin, tenHocKy);
     cout << "Nhap diem trung binh: ";
     cin >> diemTrungBinh;
-    cin.ignore(); // Đọc và loại bỏ kí tự '\n' còn lại trong buffer
+    cin.ignore();
 }
 
 void KetQuaHocTap::output() const {
@@ -30,7 +30,6 @@ float KetQuaHocTap::getDiemTrungBinh() const {
     return diemTrungBinh;
 }
 
-// Phần triển khai các phương thức của lớp SinhVien
 SinhVien::SinhVien()
     : maSV(""), hoTen(""), ngaySinh(""), namVaoHoc(0), diemDauVao(0.0) {}
 
@@ -41,29 +40,51 @@ SinhVien::SinhVien(const SinhVien& sv)
     : maSV(sv.maSV), hoTen(sv.hoTen), ngaySinh(sv.ngaySinh), namVaoHoc(sv.namVaoHoc), diemDauVao(sv.diemDauVao), ketQuaHocTap(sv.ketQuaHocTap) {}
 
 void SinhVien::input() {
-    cout << "Nhap ma sinh vien: ";
-    getline(cin, maSV);
-    cout << "Nhap ho ten sinh vien: ";
-    getline(cin, hoTen);
-    cout << "Nhap ngay sinh (dd/mm/yyyy): ";
-    getline(cin, ngaySinh);
-    cout << "Nhap nam vao hoc: ";
-    cin >> namVaoHoc;
-    cout << "Nhap diem dau vao: ";
-    cin >> diemDauVao;
-    cin.ignore(); // Đọc và loại bỏ kí tự '\n' còn lại trong buffer
+    try {
+        cout << "Nhap ma sinh vien: ";
+        getline(cin, maSV);
 
-    int soHocKy;
-    cout << "Nhap so hoc ky: ";
-    cin >> soHocKy;
-    cin.ignore();
+        cout << "Nhap ho ten sinh vien: ";
+        getline(cin, hoTen);
 
-    for (int i = 0; i < soHocKy; ++i) {
-        KetQuaHocTap kq;
-        kq.input();
-        ketQuaHocTap.push_back(kq);
+        cout << "Nhap ngay sinh (dd/mm/yyyy): ";
+        getline(cin, ngaySinh);
+
+        cout << "Nhap nam vao hoc: ";
+        cin >> namVaoHoc;
+        if (cin.fail()) {
+            throw std::invalid_argument("Invalid input for namVaoHoc");
+        }
+
+        cout << "Nhap diem dau vao: ";
+        cin >> diemDauVao;
+        if (cin.fail()) {
+            throw std::invalid_argument("Invalid input for diemDauVao");
+        }
+
+        cin.ignore(); // Clear the newline character
+
+        int soHocKy;
+        cout << "Nhap so hoc ky: ";
+        cin >> soHocKy;
+        if (cin.fail() || soHocKy < 0) {
+            throw std::invalid_argument("Invalid input for soHocKy");
+        }
+
+        cin.ignore(); // Clear the newline character
+
+        for (int i = 0; i < soHocKy; ++i) {
+            KetQuaHocTap kq;
+            kq.input();
+            ketQuaHocTap.push_back(kq);
+        }
+    } catch (const std::exception& e) {
+        cerr << "Error: " << e.what() << endl;
+        // Clear the error flag in cin
+        cin.clear();
     }
 }
+
 
 void SinhVien::output() const {
     cout << "Ma sinh vien: " << maSV << endl;
@@ -79,7 +100,7 @@ void SinhVien::output() const {
 }
 
 bool SinhVien::laChinhQuy() const {
-    return false; // Lớp cơ sở là lớp trừu tượng, không có sinh viên chính quy cụ thể
+    return false;
 }
 
 float SinhVien::diemTrungBinh(string hocKy) const {
@@ -120,7 +141,6 @@ vector<KetQuaHocTap> SinhVien::getKetQuaHocTap() const {
     return ketQuaHocTap;
 }
 
-// Phần triển khai các phương thức của lớp SinhVienChinhQuy
 SinhVienChinhQuy::SinhVienChinhQuy() {}
 
 SinhVienChinhQuy::SinhVienChinhQuy(string maSV, string hoTen, string ngaySinh, int namVaoHoc, float diemDauVao, vector<KetQuaHocTap> ketQuaHocTap)
