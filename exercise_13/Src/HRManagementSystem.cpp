@@ -19,7 +19,6 @@ void HRManagementSystem::editEmployee(const std::string& id) {
 
     if (it != employees.end()) {
         (*it)->showInformation();
-        // Cho phép người dùng chỉnh sửa thông tin nhân viên ở đây
         std::cout << "Employee information updated successfully.\n";
     } else {
         std::cout << "Employee with ID " << id << " not found.\n";
@@ -32,7 +31,7 @@ void HRManagementSystem::removeEmployee(const std::string& id) {
     });
 
     if (it != employees.end()) {
-        delete *it;  // Giải phóng bộ nhớ của đối tượng Employee
+        delete *it;
         employees.erase(it, employees.end());
         std::cout << "Employee with ID " << id << " removed successfully.\n";
     } else {
