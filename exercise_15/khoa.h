@@ -1,5 +1,5 @@
-#ifndef KHOA_H
-#define KHOA_H
+#ifndef _KHOA_H_
+#define _KHOA_H_
 
 #include <iostream>
 #include <vector>
@@ -7,27 +7,27 @@
 #include <map>
 
 #include "SinhVien.h"
-
+using namespace std;
 class Khoa {
 private:
-    std::string tenKhoa;
-    std::vector<SinhVien*> danhSachSinhVien;
+    string tenKhoa;
+    vector<SinhVien*> danhSachSinhVien;
 
 public:
-    Khoa(std::string tenKhoa);
-    ~Khoa(); // Hủy các đối tượng con (SinhVien)
+    Khoa(string tenKhoa);
     void themSinhVien(SinhVien* sv);
     int soSinhVienChinhQuy() const;
     SinhVien* sinhVienDiemDauVaoCaoNhat() const;
-    std::vector<SinhVienTaiChuc*> danhSachSinhVienTaiChucNoiLienKet(std::string noiLienKet) const;
-    std::vector<SinhVien*> sinhVienDiemTrungBinhCaoNhatHocKy(std::string hocKy, float diem) const;
+    vector<SinhVienTaiChuc*> danhSachSinhVienTaiChucNoiLienKet(string noiLienKet) const;
+    vector<SinhVien*> sinhVienDiemTrungBinhCaoNhatHocKy(string hocKy, float diem) const;
     SinhVien* sinhVienDiemTrungBinhCaoNhat() const;
     void sapXepDanhSach();
 
-    std::map<int, int> thongKeSoLuongSinhVienTheoNam() const;
-        const std::vector<SinhVien*>& getDanhSachSinhVien() const {
+    map<int, int> thongKeSoLuongSinhVienTheoNam() const;
+    const vector<SinhVien*>& getDanhSachSinhVien() const {
         return danhSachSinhVien;
     }
+    ~Khoa();
 };
 
-#endif  // KHOA_H
+#endif  /* _KHOA_H_ */

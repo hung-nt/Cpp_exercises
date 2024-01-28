@@ -1,5 +1,6 @@
 // main.cpp
 #include "Khoa.h"
+using namespace std;
 
 int main()
 {

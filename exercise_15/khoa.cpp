@@ -1,6 +1,7 @@
 #include "Khoa.h"
+using namespace std;
 
-Khoa::Khoa(std::string tenKhoa) : tenKhoa(tenKhoa) {}
+Khoa::Khoa(string tenKhoa) : tenKhoa(tenKhoa) {}
 
 Khoa::~Khoa()
 {
@@ -35,7 +36,7 @@ SinhVien *Khoa::sinhVienDiemDauVaoCaoNhat() const
         return nullptr;
     }
 
-    auto maxIter = std::max_element(danhSachSinhVien.begin(), danhSachSinhVien.end(),
+    auto maxIter = max_element(danhSachSinhVien.begin(), danhSachSinhVien.end(),
                                     [](const SinhVien *sv1, const SinhVien *sv2)
                                     {
                                         return sv1->getDiemDauVao() < sv2->getDiemDauVao();
@@ -44,9 +45,9 @@ SinhVien *Khoa::sinhVienDiemDauVaoCaoNhat() const
     return *maxIter;
 }
 
-std::vector<SinhVienTaiChuc *> Khoa::danhSachSinhVienTaiChucNoiLienKet(std::string noiLienKet) const
+vector<SinhVienTaiChuc *> Khoa::danhSachSinhVienTaiChucNoiLienKet(string noiLienKet) const
 {
-    std::vector<SinhVienTaiChuc *> result;
+    vector<SinhVienTaiChuc *> result;
 
     for (const auto &sv : danhSachSinhVien)
     {
@@ -63,9 +64,9 @@ std::vector<SinhVienTaiChuc *> Khoa::danhSachSinhVienTaiChucNoiLienKet(std::stri
     return result;
 }
 
-std::vector<SinhVien *> Khoa::sinhVienDiemTrungBinhCaoNhatHocKy(std::string hocKy, float diem) const
+vector<SinhVien *> Khoa::sinhVienDiemTrungBinhCaoNhatHocKy(string hocKy, float diem) const
 {
-    std::vector<SinhVien *> result;
+    vector<SinhVien *> result;
 
     for (const auto &sv : danhSachSinhVien)
     {
@@ -85,7 +86,7 @@ SinhVien *Khoa::sinhVienDiemTrungBinhCaoNhat() const
         return nullptr;
     }
 
-    auto maxIter = std::max_element(danhSachSinhVien.begin(), danhSachSinhVien.end(),
+    auto maxIter = max_element(danhSachSinhVien.begin(), danhSachSinhVien.end(),
                                     [](const SinhVien *sv1, const SinhVien *sv2)
                                     {
                                         return sv1->diemTrungBinh("HocKyCuoi") < sv2->diemTrungBinh("HocKyCuoi");
@@ -96,7 +97,7 @@ SinhVien *Khoa::sinhVienDiemTrungBinhCaoNhat() const
 
 void Khoa::sapXepDanhSach()
 {
-    std::sort(danhSachSinhVien.begin(), danhSachSinhVien.end(),
+    sort(danhSachSinhVien.begin(), danhSachSinhVien.end(),
               [](const SinhVien *sv1, const SinhVien *sv2)
               {
                   if (sv1->laChinhQuy() && !sv2->laChinhQuy())
@@ -114,9 +115,9 @@ void Khoa::sapXepDanhSach()
               });
 }
 
-std::map<int, int> Khoa::thongKeSoLuongSinhVienTheoNam() const
+map<int, int> Khoa::thongKeSoLuongSinhVienTheoNam() const
 {
-    std::map<int, int> thongKe;
+    map<int, int> thongKe;
 
     for (const auto &sv : danhSachSinhVien)
     {
