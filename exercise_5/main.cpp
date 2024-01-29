@@ -3,10 +3,6 @@
 #include <string>
 using namespace std;
 
-#include <iostream>
-#include <string>
-using namespace std;
-
 class Nguoi
 {
 private:
@@ -84,7 +80,6 @@ public:
             }
         }
 
-        // If the person is not in the list, add a new entry
         KhachInfo newKhachInfo(khach);
         switch (loai)
         {
