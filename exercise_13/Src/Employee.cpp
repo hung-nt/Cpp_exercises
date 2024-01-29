@@ -8,7 +8,7 @@ Employee::Employee() {
     employeeCount++;
 }
 
-Employee::Employee(std::string id, std::string fullName, std::chrono::system_clock::time_point birthday,
+Employee::Employee(std::string id, std::string fullName, std::string birthday,
          std::string phone, std::string email, const std::vector<Certificate>& certificates, int employeeType)
     : id(id), fullName(fullName), birthday(birthday), phone(phone), email(email),
       certificates(certificates), employeeType(employeeType) {
@@ -19,7 +19,7 @@ void Employee::showInformation() const {
     std::cout << "Employee Information:\n";
     std::cout << "ID: " << getId() << "\n";
     std::cout << "Name: " << getFullName() << "\n";
-    std::cout << "Birthday: " << std::chrono::system_clock::to_time_t(getBirthday()) << "\n";
+    std::cout << "Birthday: " << getBirthday() << "\n";
     std::cout << "Phone: " << getPhone() << "\n";
     std::cout << "Email: " << getEmail() << "\n";
     std::cout << "Employee Type: " << getEmployeeTypeString() << "\n";
@@ -36,7 +36,7 @@ std::string Employee::getId() const {
     return id;
 }
 
-std::chrono::system_clock::time_point Employee::getBirthday() const {
+std::string Employee::getBirthday() const {
     return birthday;
 }
 

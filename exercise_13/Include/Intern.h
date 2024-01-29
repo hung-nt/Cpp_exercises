@@ -11,7 +11,7 @@ private:
 
 public:
     Intern();
-    Intern(std::string id, std::string fullName, std::chrono::system_clock::time_point birthday,
+    Intern(std::string id, std::string fullName, std::string birthday,
            std::string phone, std::string email, const std::vector<Certificate>& certificates,
            std::string major, int semester, std::string universityName);
 

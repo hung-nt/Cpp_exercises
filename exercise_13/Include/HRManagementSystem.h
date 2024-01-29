@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include "Employee.h"
+using namespace std;
 
 class HRManagementSystem {
 private:
@@ -19,6 +20,7 @@ public:
     void displayAllInterns() const;
     void displayAllExperiences() const;
     void displayAllFreshers() const;
+    const vector<Employee*>& getEmployees() const;
 };
 
 #endif // HRMANAGEMENTSYSTEM_H

@@ -3,7 +3,7 @@
 
 Experience::Experience() {}
 
-Experience::Experience(std::string id, std::string fullName, std::chrono::system_clock::time_point birthday,
+Experience::Experience(std::string id, std::string fullName, std::string birthday,
            std::string phone, std::string email, const std::vector<Certificate>& certificates,
            int yearOfExperience, std::string proSkill)
     : Employee(id, fullName, birthday, phone, email, certificates, 0),
