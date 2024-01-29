@@ -3,5 +3,6 @@
         "chrono": "cpp",
         "algorithm": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }
