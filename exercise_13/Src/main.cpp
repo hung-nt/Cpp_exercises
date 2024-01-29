@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/HRManagementSystem.h"
+#include "../Include/HRManagementSystem.h"
 #include "../include/Experience.h"
 #include "../include/Intern.h"
 #include "../include/Fresher.h"
@@ -135,27 +135,7 @@ int main()
             string id;
             cout << "Enter Employee ID to edit: ";
             getline(cin, id);
-
-            // Search for the employee in the HR system
-            auto it = find_if(hrSystem.getEmployees().begin(), hrSystem.getEmployees().end(), [id](const Employee *emp)
-                              { return emp->getId() == id; });
-
-            if (it != hrSystem.getEmployees().end())
-            {
-                // Display existing employee information
-                (*it)->showInformation();
-
-                // Get user input for updated information
-                // (Similar to the process in Case 1 for adding an employee)
-                // You may want to call functions like isValidDate, isValidEmail, etc.
-                // Update the employee in the HR system using hrSystem.editEmployee(id);
-
-                cout << "Employee information updated successfully.\n";
-            }
-            else
-            {
-                cout << "Employee with ID " << id << " not found.\n";
-            }
+            hrSystem.editEmployee(id);
             break;
         }
 

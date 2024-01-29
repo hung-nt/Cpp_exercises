@@ -1,4 +1,4 @@
-#include "../include/HRManagementSystem.h"
+#include "../Include/HRManagementSystem.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -24,7 +24,69 @@ void HRManagementSystem::editEmployee(const std::string &id)
 
     if (it != employees.end())
     {
-        (*it)->showInformation();
+        int choice;
+
+        do
+        {
+            std::cout << "\nEdit Employee Information:\n";
+            std::cout << "1. Edit Full Name\n";
+            std::cout << "2. Edit Birthday\n";
+            std::cout << "3. Edit Phone\n";
+            std::cout << "4. Edit Email\n";
+            std::cout << "5. Return to Main Menu\n";
+            std::cout << "Enter your choice: ";
+            std::cin >> choice;
+
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+
+            switch (choice)
+            {
+            case 1:
+            {
+                // Edit Full Name
+                std::string newName;
+                std::cout << "Enter new Full Name: ";
+                std::getline(std::cin, newName);
+                (*it)->setFullName(newName);
+                break;
+            }
+            case 2:
+            {
+                // Edit Birthday
+                std::string newBirthday;
+                std::cout << "Enter new Birthday (YYYY-MM-DD): ";
+                std::getline(std::cin, newBirthday);
+                (*it)->setBirthday(newBirthday);
+                break;
+            }
+            case 3:
+            {
+                // Edit Phone
+                std::string newPhone;
+                std::cout << "Enter new Phone: ";
+                std::getline(std::cin, newPhone);
+                (*it)->setPhone(newPhone);
+                break;
+            }
+            case 4:
+            {
+                // Edit Email
+                std::string newEmail;
+                std::cout << "Enter new Email: ";
+                std::getline(std::cin, newEmail);
+                (*it)->setEmail(newEmail);
+                break;
+            }
+            case 5:
+                // Return to Main Menu
+                std::cout << "Returning to Main Menu.\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please enter a valid option.\n";
+            }
+
+        } while (choice != 5);
+
         std::cout << "Employee information updated successfully.\n";
     }
     else
@@ -32,6 +94,7 @@ void HRManagementSystem::editEmployee(const std::string &id)
         std::cout << "Employee with ID " << id << " not found.\n";
     }
 }
+
 
 void HRManagementSystem::removeEmployee(const std::string &id)
 {
