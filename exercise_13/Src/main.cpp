@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/HRManagementSystem.h"
+#include "../Include/HRManagementSystem.h"
 #include "../include/Experience.h"
 #include "../include/Intern.h"
 #include "../include/Fresher.h"

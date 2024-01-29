@@ -27,6 +27,10 @@ public:
     std::string getPhone() const;
     std::string getEmail() const;
     std::string getFullName() const;
+    void setFullName(const std::string& fullName);
+    void setBirthday(const std::string& birthday);
+    void setPhone(const std::string& phone);
+    void setEmail(const std::string& email);
     int getEmployeeType() const;
     std::string getEmployeeTypeString() const;
     static int getEmployeeCount();

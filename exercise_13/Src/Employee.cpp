@@ -69,6 +69,23 @@ std::string Employee::getEmployeeTypeString() const {
     }
 }
 
+void Employee::setFullName(const std::string& fullName) {
+    this->fullName = fullName;
+}
+
+void Employee::setBirthday(const std::string& birthday) {
+    this->birthday = birthday;
+}
+
+void Employee::setPhone(const std::string& phone) {
+    this->phone = phone;
+}
+
+void Employee::setEmail(const std::string& email) {
+    this->email = email;
+}
+
+
 int Employee::getEmployeeCount() {
     return employeeCount;
 }
