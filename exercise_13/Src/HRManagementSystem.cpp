@@ -1,6 +1,7 @@
-#include "../Include/HRManagementSystem.h"
 #include <iostream>
 #include <vector>
+#include "../Include/HRManagementSystem.h"
+#include "../Include/Exception.h"
 using namespace std;
 
 HRManagementSystem::~HRManagementSystem()
@@ -8,6 +9,110 @@ HRManagementSystem::~HRManagementSystem()
     for (auto employee : employees)
     {
         delete employee;
+    }
+}
+
+bool HRManagementSystem::is_valid_number(const string &number)
+{
+    static const std::string AllowedChars = "0123456789";
+    for (char numberChar : number)
+    {
+        bool isDigit = false;
+        for (char allowedChar : AllowedChars)
+        {
+            if (numberChar == allowedChar)
+            {
+                isDigit = true;
+                break;
+            }
+        }
+        if (!isDigit)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+bool HRManagementSystem::is_valid_email(const std::string &email)
+{
+    // Check the first character is an alphabet or not
+    if (!((email[0] >= 'a' && email[0] <= 'z') || (email[0] >= 'A' && email[0] <= 'Z')))
+    {
+        return false;
+    }
+
+    int atCount = 0;
+    int dotCount = 0;
+
+    // Traverse over the email id string to find position of Dot and At
+    for (char ch : email)
+    {
+        if (ch == '@')
+        {
+            atCount++;
+        }
+        else if (ch == '.')
+        {
+            dotCount++;
+        }
+    }
+
+    // If At or Dot is not present or Dot is present at the end
+    if (atCount != 1 || dotCount != 1 || email.find('@') > email.find('.'))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool HRManagementSystem::is_valid_birthday(const std::string &birthday)
+{
+    // Implement your validation logic for birthday
+    // For example, you can check the format or range
+    // Here, a simple check for the length is done
+    return (birthday.length() == 10);
+}
+void HRManagementSystem::validateEmployeeData(const Employee *employee) const
+{
+    validateFullName(employee->getFullName());
+    validateBirthday(employee->getBirthday());
+    validatePhone(employee->getPhone());
+    validateEmail(employee->getEmail());
+}
+
+void HRManagementSystem::validateFullName(const std::string &fullName) const
+{
+    if (fullName.empty())
+    {
+        throw NameException();
+    }
+}
+
+void HRManagementSystem::validateBirthday(const std::string &birthday) const
+{
+
+    if (!is_valid_birthday(birthday))
+    {
+        throw BirthdayException("Invalid birthday format or range.");
+    }
+}
+
+void HRManagementSystem::validatePhone(const std::string &phone) const
+{
+
+    if (!is_valid_number(phone))
+    {
+        throw PhoneException("Invalid phone number format.");
+    }
+}
+
+void HRManagementSystem::validateEmail(const std::string &email) const
+{
+
+    if (!is_valid_email(email))
+    {
+        throw EmailException("Invalid email format or domain.");
     }
 }
 
@@ -47,6 +152,7 @@ void HRManagementSystem::editEmployee(const std::string &id)
                 std::string newName;
                 std::cout << "Enter new Full Name: ";
                 std::getline(std::cin, newName);
+                validateFullName(newName);
                 (*it)->setFullName(newName);
                 break;
             }
@@ -56,6 +162,7 @@ void HRManagementSystem::editEmployee(const std::string &id)
                 std::string newBirthday;
                 std::cout << "Enter new Birthday (YYYY-MM-DD): ";
                 std::getline(std::cin, newBirthday);
+                validateBirthday(newBirthday);
                 (*it)->setBirthday(newBirthday);
                 break;
             }
@@ -65,6 +172,7 @@ void HRManagementSystem::editEmployee(const std::string &id)
                 std::string newPhone;
                 std::cout << "Enter new Phone: ";
                 std::getline(std::cin, newPhone);
+                validatePhone(newPhone);
                 (*it)->setPhone(newPhone);
                 break;
             }
@@ -74,6 +182,7 @@ void HRManagementSystem::editEmployee(const std::string &id)
                 std::string newEmail;
                 std::cout << "Enter new Email: ";
                 std::getline(std::cin, newEmail);
+                validateEmail(newEmail);
                 (*it)->setEmail(newEmail);
                 break;
             }
@@ -94,7 +203,6 @@ void HRManagementSystem::editEmployee(const std::string &id)
         std::cout << "Employee with ID " << id << " not found.\n";
     }
 }
-
 
 void HRManagementSystem::removeEmployee(const std::string &id)
 {
@@ -158,6 +266,7 @@ void HRManagementSystem::displayAllFreshers() const
     }
 }
 
-const std::vector<Employee*>& HRManagementSystem::getEmployees() const {
+const std::vector<Employee *> &HRManagementSystem::getEmployees() const
+{
     return employees;
 }

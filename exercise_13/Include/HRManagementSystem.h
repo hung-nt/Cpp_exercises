@@ -21,6 +21,14 @@ public:
     void displayAllExperiences() const;
     void displayAllFreshers() const;
     const vector<Employee*>& getEmployees() const;
+    void validateEmployeeData (const Employee *employee) const;
+    void validateFullName(const string &fullName) const;
+    void validateBirthday(const string &birthday) const;
+    void validatePhone(const string &phone) const;
+    void validateEmail(const string &email)const;
+    static bool is_valid_number(const string& number);
+    static bool is_valid_email(const string& email);
+    static bool is_valid_birthday(const string& birthday);
 };
 
 #endif // HRMANAGEMENTSYSTEM_H

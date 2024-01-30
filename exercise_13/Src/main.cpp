@@ -40,15 +40,51 @@ int main()
 
             cout << "Enter Full Name: ";
             getline(cin, fullName);
+            try
+            {
+                hrSystem.validateFullName(fullName);
+            }
+            catch (const std::exception &ex)
+            {
+                cout << "Error: " << ex.what() << endl;
+            }
+            continue;
 
             cout << "Enter Birthday (YYYY-MM-DD): ";
             getline(cin, birthdayStr);
+            try
+            {
+                hrSystem.validateBirthday(birthdayStr);
+            }
+            catch (const std::exception &ex)
+            {
+                cout << "Error: " << ex.what() << endl;
+                continue;
+            }
 
             cout << "Enter Phone: ";
             getline(cin, phone);
+            try
+            {
+                hrSystem.validatePhone(phone);
+            }
+            catch (const std::exception &ex)
+            {
+                cout << "Error: " << ex.what() << endl;
+                continue;
+            }
 
             cout << "Enter Email: ";
             getline(cin, email);
+            try
+            {
+                hrSystem.validateEmail(email);
+            }
+            catch (const std::exception &ex)
+            {
+                cout << "Error: " << ex.what() << endl;
+                continue;
+            }
 
             // Get user input for employee type
             cout << "Enter Employee Type (0: Experience, 1: Fresher, 2: Intern): ";
