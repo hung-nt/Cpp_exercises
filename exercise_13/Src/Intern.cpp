@@ -1,4 +1,4 @@
-#include "../include/Intern.h"
+#include "../Include/Intern.h"
 #include <iostream>
 
 Intern::Intern() {}

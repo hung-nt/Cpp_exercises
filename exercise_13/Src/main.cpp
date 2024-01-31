@@ -1,8 +1,8 @@
 #include <iostream>
 #include "../Include/HRManagementSystem.h"
-#include "../include/Experience.h"
-#include "../include/Intern.h"
-#include "../include/Fresher.h"
+#include "../Include/Experience.h"
+#include "../Include/Intern.h"
+#include "../Include/Fresher.h"
 using namespace std;
 
 int main()
@@ -45,8 +45,9 @@ int main()
             catch (const std::exception &ex)
             {
                 cout << "Error: " << ex.what() << endl;
+                continue;
             }
-            continue;
+            
 
             cout << "Enter Birthday (YYYY-MM-DD): ";
             getline(cin, birthdayStr);
