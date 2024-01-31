@@ -115,9 +115,11 @@ int main()
 
                 cout << "Enter Graduation Date (YYYY-MM-DD): ";
                 getline(cin, graduationDateStr);
+                cin.ignore();
 
                 cout << "Enter Graduation Rank: ";
                 getline(cin, graduationRank);
+                cin.ignore();
 
                 cout << "Enter University Name: ";
                 getline(cin, universityName);
@@ -132,7 +134,8 @@ int main()
                 int semester;
 
                 cout << "Enter Major: ";
-                getline(cin, major);
+                cin >> major;
+                cin.ignore(); 
 
                 cout << "Enter Semester: ";
                 cin >> semester;

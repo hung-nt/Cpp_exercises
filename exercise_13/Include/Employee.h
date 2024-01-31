@@ -34,7 +34,7 @@ public:
     int getEmployeeType() const;
     std::string getEmployeeTypeString() const;
     static int getEmployeeCount();
-    virtual ~Employee() {}
+    virtual ~Employee() {};
 };
 
 #endif // EMPLOYEE_H
