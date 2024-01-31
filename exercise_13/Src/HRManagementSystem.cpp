@@ -35,7 +35,6 @@ bool HRManagementSystem::is_valid_number(const string &number)
 }
 bool HRManagementSystem::is_valid_email(const std::string &email)
 {
-    // Check the first character is an alphabet or not
     if (!((email[0] >= 'a' && email[0] <= 'z') || (email[0] >= 'A' && email[0] <= 'Z')))
     {
         return false;
@@ -43,8 +42,6 @@ bool HRManagementSystem::is_valid_email(const std::string &email)
 
     int atCount = 0;
     int dotCount = 0;
-
-    // Traverse over the email id string to find position of Dot and At
     for (char ch : email)
     {
         if (ch == '@')
@@ -57,7 +54,6 @@ bool HRManagementSystem::is_valid_email(const std::string &email)
         }
     }
 
-    // If At or Dot is not present or Dot is present at the end
     if (atCount != 1 || dotCount != 1 || email.find('@') > email.find('.'))
     {
         return false;
@@ -68,9 +64,6 @@ bool HRManagementSystem::is_valid_email(const std::string &email)
 
 bool HRManagementSystem::is_valid_birthday(const std::string &birthday)
 {
-    // Implement your validation logic for birthday
-    // For example, you can check the format or range
-    // Here, a simple check for the length is done
     return (birthday.length() == 10);
 }
 void HRManagementSystem::validateEmployeeData(const Employee *employee) const
@@ -142,13 +135,12 @@ void HRManagementSystem::editEmployee(const std::string &id)
             std::cout << "Enter your choice: ";
             std::cin >> choice;
 
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             switch (choice)
             {
             case 1:
             {
-                // Edit Full Name
                 std::string newName;
                 std::cout << "Enter new Full Name: ";
                 std::getline(std::cin, newName);
@@ -158,7 +150,6 @@ void HRManagementSystem::editEmployee(const std::string &id)
             }
             case 2:
             {
-                // Edit Birthday
                 std::string newBirthday;
                 std::cout << "Enter new Birthday (YYYY-MM-DD): ";
                 std::getline(std::cin, newBirthday);
@@ -168,7 +159,6 @@ void HRManagementSystem::editEmployee(const std::string &id)
             }
             case 3:
             {
-                // Edit Phone
                 std::string newPhone;
                 std::cout << "Enter new Phone: ";
                 std::getline(std::cin, newPhone);
@@ -178,7 +168,6 @@ void HRManagementSystem::editEmployee(const std::string &id)
             }
             case 4:
             {
-                // Edit Email
                 std::string newEmail;
                 std::cout << "Enter new Email: ";
                 std::getline(std::cin, newEmail);
@@ -187,7 +176,6 @@ void HRManagementSystem::editEmployee(const std::string &id)
                 break;
             }
             case 5:
-                // Return to Main Menu
                 std::cout << "Returning to Main Menu.\n";
                 break;
             default:
