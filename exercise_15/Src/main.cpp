@@ -1,5 +1,5 @@
 // main.cpp
-#include "Khoa.h"
+#include "../Inc/khoa.h"
 using namespace std;
 
 int main()

@@ -1,4 +1,4 @@
-#include "Khoa.h"
+#include "../Inc/khoa.h"
 using namespace std;
 
 Khoa::Khoa(string tenKhoa) : tenKhoa(tenKhoa) {}

@@ -47,6 +47,7 @@ public:
     int getNamVaoHoc() const;
     float getDiemDauVao() const;
     vector<KetQuaHocTap> getKetQuaHocTap() const;
+    virtual ~SinhVien() {};
 };
 
 class SinhVienChinhQuy : public SinhVien

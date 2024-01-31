@@ -1,5 +1,5 @@
 // SinhVien.cpp
-#include "SinhVien.h"
+#include "../Inc/sinhvien.h"
 
 // Phần triển khai các phương thức của lớp KetQuaHocTap
 KetQuaHocTap::KetQuaHocTap() : tenHocKy(""), diemTrungBinh(0.0) {}

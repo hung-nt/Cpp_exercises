@@ -5,8 +5,9 @@
 #include <vector>
 #include <algorithm>
 #include <map>
+#include "sinhvien.h"
 
-#include "SinhVien.h"
+
 using namespace std;
 class Khoa {
 private:
@@ -27,7 +28,7 @@ public:
     const vector<SinhVien*>& getDanhSachSinhVien() const {
         return danhSachSinhVien;
     }
-    ~Khoa();
+    virtual ~Khoa();
 };
 
 #endif  /* _KHOA_H_ */
