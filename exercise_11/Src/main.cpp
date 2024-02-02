@@ -1,13 +1,6 @@
 #include <iostream>
 #include <memory>
 
-class SoPhucView {
-public:
-    void hienThi(const double phanThuc, const double phanAo) {
-        std::cout << "So phuc: " << phanThuc << " + " << phanAo << "i" << std::endl;
-    }
-};
-
 class SoPhucModel {
 private:
     double phanThuc;
@@ -40,6 +33,13 @@ public:
         double pt = phanThuc * other.phanThuc - phanAo * other.phanAo;
         double pa = phanThuc * other.phanAo + phanAo * other.phanThuc;
         return SoPhucModel(pt, pa);
+    }
+};
+
+class SoPhucView {
+public:
+    void hienThi(const double phanThuc, const double phanAo) {
+        std::cout << "So phuc: " << phanThuc << " + " << phanAo << "i" << std::endl;
     }
 };
 
@@ -78,24 +78,34 @@ public:
     }
 };
 
+// Lớp hoặc giao diện quản lý sự tương tác giữa Model, View và Controller
+class SoPhucApp {
+private:
+    std::shared_ptr<SoPhucModel> model;
+    SoPhucController controller;
+
+public:
+    SoPhucApp() : model(std::make_shared<SoPhucModel>(0, 0)), controller(model) {}
+
+    void chay() {
+        controller.nhapSoPhuc();
+        controller.hienThiSoPhuc();
+
+        // Đọc thông tin cho số phức thứ hai
+        SoPhucModel soPhuc2(0, 0);
+        controller.nhapSoPhuc();
+
+        std::cout << "Tong hai so phuc:" << std::endl;
+        controller.congHaiSoPhuc(soPhuc2);
+
+        std::cout << "Tich hai so phuc:" << std::endl;
+        controller.nhanHaiSoPhuc(soPhuc2);
+    }
+};
+
 int main() {
-    // Sử dụng smart pointer để quản lý đối tượng SoPhucModel
-    std::shared_ptr<SoPhucModel> soPhuc1 = std::make_shared<SoPhucModel>(0, 0);
-    SoPhucController controller(soPhuc1);
-
-    std::cout << "Nhap so phuc 1:" << std::endl;
-    controller.nhapSoPhuc();
-
-    std::cout << "Nhap so phuc 2:" << std::endl;
-    std::shared_ptr<SoPhucModel> soPhuc2 = std::make_shared<SoPhucModel>(0, 0);
-    SoPhucController controller2(soPhuc2);
-    controller2.nhapSoPhuc();
-
-    std::cout << "Tong hai so phuc:" << std::endl;
-    controller.congHaiSoPhuc(*soPhuc2);
-
-    std::cout << "Tich hai so phuc:" << std::endl;
-    controller.nhanHaiSoPhuc(*soPhuc2);
+    SoPhucApp app;
+    app.chay();
 
     return 0;
 }
