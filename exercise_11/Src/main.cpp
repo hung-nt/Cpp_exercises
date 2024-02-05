@@ -35,7 +35,7 @@ public:
         return SoPhucModel(pt, pa);
     }
 };
-
+//
 class SoPhucView {
 public:
     void hienThi(const double phanThuc, const double phanAo) {
